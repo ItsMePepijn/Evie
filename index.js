@@ -1,8 +1,6 @@
 //Importing libraries
-const db = require('quick.db');
 const fs = require('fs');
 const Discord = require('discord.js');
-const pfx = db.get('prefix');
 
 //Client setup
 const DIF = Discord.Intents.FLAGS
@@ -26,33 +24,16 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-//On ready
-client.on('ready', () => {
-    console.log(`${client.user.displayName} Has logged in!`);
-    status();
-    setInterval(status, 600000);
-});
-
-//Config setup
-const {token} = require(__dirname + '/config.json');
-
-//Command handler
-client.on('messageCreate', message => {
-    const args = message.content.slice(pfx.length).trim().split(' ');
-
-    if (!message.content.startsWith(pfx) || message.author.bot || !message.guild) return;
-    const command = args.shift().toLowerCase();
-
-    const file = client.commands.get(command);
-    if(file) file.execute(message, args, client);
-});
-
-client.on('guildMemberAdd', member => { 
-    console.log(`${member.displayName} joined the server!`)
-});
-
-function status(){
-    client.user.setPresence({ activities: [{ name: 'all the lil mushrooms', type: 'WATCHING' }], status: 'dnd' });
+//Events setup
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
 }
 
+const {token} = require(__dirname + '/config.json');
 client.login(token);

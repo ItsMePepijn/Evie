@@ -2,7 +2,6 @@
 const db = require('quick.db');
 const fs = require('fs');
 const Discord = require('discord.js');
-
 const pfx = db.get('prefix');
 
 //Client setup
@@ -32,8 +31,6 @@ client.on('ready', () => {
     console.log(`${client.user.displayName} Has logged in!`);
     status();
     setInterval(status, 600000);
-    
-    db.set('prefix', '!')
 });
 
 //Config setup

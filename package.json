@@ -1,5 +1,5 @@
 {
-  "name": "mushy-bot",
+  "name": "evie",
   "version": "1.0.0",
   "description": "THE bot for Mushroom Meadows",
   "main": "index.js",
@@ -9,6 +9,8 @@
   "author": "Mushroom team",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "chalk": "^5.0.0",
+    "discord.js": "^13.6.0",
+    "quick.db": "^7.1.3"
   }
 }

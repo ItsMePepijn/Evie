@@ -1,4 +1,6 @@
 //Importing libraries
+const db = require('quick.db');
+const pfx = db.get('prefix');
 const fs = require('fs');
 const Discord = require('discord.js');
 
@@ -34,6 +36,16 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
+client.on('messageCreate', message => {
+    const args = message.content.slice(pfx.length).trim().split(' ');
+
+    if (!message.content.startsWith(pfx) || message.author.bot || !message.guild) return;
+    const command = args.shift().toLowerCase();
+
+    const file = client.commands.get(command);
+    if(file) file.execute(message, args, client);
+})
 
 const {token} = require(__dirname + '/config.json');
 client.login(token);

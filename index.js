@@ -7,9 +7,9 @@ const {client} = require('./client')
 client.commands = new Discord.Collection();
 
 //Commands setup
-const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
-    const command = require(__dirname + `/commands/${file}`);
+    const command = require(`./commands/${file}`);
     console.log('[COMMAND HANDLER]' + ' - ' + `${file} has been loaded`);
     client.commands.set(command.name, command);
 }
@@ -25,5 +25,5 @@ for (const file of eventFiles) {
 	}
 }
 
-const {token} = require(__dirname + '/config.json');
+const {token} = require('./config.json');
 client.login(token);

@@ -5,17 +5,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 
 //Client setup
-const DIF = Discord.Intents.FLAGS
-const client = new Discord.Client({ intents: [
-    DIF.GUILDS, 
-    DIF.GUILD_MESSAGES, 
-    DIF.GUILD_BANS,
-    DIF.GUILD_MEMBERS,
-    DIF.DIRECT_MESSAGES,
-    DIF.GUILD_INTEGRATIONS
-], 
-partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-
+const {client} = require('./client')
 client.commands = new Discord.Collection();
 
 //Commands setup

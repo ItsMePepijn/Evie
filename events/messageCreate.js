@@ -7,6 +7,8 @@ module.exports = {
     execute(message){
         const args = message.content.slice(pfx.length).trim().split(' ');
 
+        if(message.content.toLowerCase().match('grrr') && !message.author.bot) message.reply('Hey tiger! grrr~')
+
         if (!message.content.startsWith(pfx) || message.author.bot || !message.guild) return;
         const command = args.shift().toLowerCase();
     

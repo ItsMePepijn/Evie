@@ -25,9 +25,5 @@ for (const file of eventFiles) {
 	}
 }
 
-client.on('messageCreate', message => {
-
-})
-
 const {token} = require(__dirname + '/config.json');
 client.login(token);

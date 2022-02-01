@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 const DIF = Discord.Intents.FLAGS
-const client = new Discord.Client({ intents: [
+exports.client = new Discord.Client({ intents: [
     DIF.GUILDS, 
     DIF.GUILD_MESSAGES, 
     DIF.GUILD_BANS,
@@ -11,4 +11,3 @@ const client = new Discord.Client({ intents: [
 ], 
 partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
-exports.client = client;

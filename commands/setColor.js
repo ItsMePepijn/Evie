@@ -10,6 +10,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed();
         embed.setTimestamp()
+        embed.setColor(db.get('embedColor'))
 
         if (message.member.roles.cache.has(staffRole.id)){
             var re = /[0-9A-Fa-f]{6}/g;

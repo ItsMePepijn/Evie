@@ -34,6 +34,17 @@ module.exports = {
                     const textData = JSON.stringify(data);
 
                     embed.addField(item.ID, `\`\`\`json\n${textData}\`\`\``)
+                }
+                else if(data.type == 'GUILD_TEXT'){
+                    delete data.permissionOverwrites;
+                    delete data.messages;
+                    delete data.threads;
+                    delete data.lastPinTimestamp;
+                    delete data.guildId;
+                    delete data.lastMessageId;
+                    const textData = JSON.stringify(data);
+
+                    embed.addField(item.ID, `\`\`\`json\n${textData}\`\`\``)
                 }else{
                     embed.addField(item.ID, `\`${data}\``)
                 }

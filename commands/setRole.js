@@ -6,13 +6,11 @@ module.exports = {
     description: 'changes a role in the database',
     isStaff: true,
     execute(message, args){
-        const staffRole = db.get('staffRole')
-
         const embed = new Discord.MessageEmbed();
         embed.setColor(db.get('embedColor'))
         embed.setTimestamp()
 
-        if (message.member.roles.cache.has(staffRole.id)){
+        if (message.member.permissions.has('ADMINISTRATOR')){
             if(!message.mentions.roles.first()){
                 embed.setTitle('Error')
                 embed.setDescription('You have to mention a role!')
@@ -25,6 +23,15 @@ module.exports = {
 
                     embed.setTitle('Set the staff role!')
                     embed.setDescription(`> **Old role:** ${oldStaffRole.name}\n> **New role:** ${newStaffRole.name}`)
+                }
+                else if(ags[0] == 'member'){
+                    const oldMemberRole = db.get('memberRole')
+
+                    db.set('memberRole', message.mentions.roles.first())
+                    const newMemberRole = db.get('memberRole')
+
+                    embed.setTitle('Set the member role!')
+                    embed.setDescription(`> **Old role:** ${oldMemberRole.name}\n> **New role:** ${newMemberRole.name}`)
                 }
             }
         }

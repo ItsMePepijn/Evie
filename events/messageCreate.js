@@ -19,7 +19,7 @@ module.exports = {
                 }
             }
 
-            if(checkAge(cnt) && message.content.toLowerCase().match('mushroom')){
+            if(checkAge(cnt) && message.content.toLowerCase().match(db.get('codeword'))){
                 message.member.roles.add(memberRole);
                 return message.delete()
             }else{

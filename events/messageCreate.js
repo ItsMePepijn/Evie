@@ -7,7 +7,7 @@ module.exports = {
     execute(message){
         if(message.channel.id == db.get('verifyChannel').id){
 
-            // if(message.author.bot || message.member.roles.cache.has(db.get('staffRole').id)) return;
+            if(message.author.bot || message.member.roles.cache.has(db.get('staffRole').id)) return;
             const cnt = message.content.trim().split(' ');
             const memberRole = message.guild.roles.cache.get(db.get('memberRole').id);
 

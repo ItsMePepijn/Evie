@@ -24,7 +24,7 @@ module.exports = {
                     embed.setTitle('Set the staff role!')
                     embed.setDescription(`> **Old role:** ${oldStaffRole.name}\n> **New role:** ${newStaffRole.name}`)
                 }
-                else if(ags[0] == 'member'){
+                else if(args[0] == 'member'){
                     const oldMemberRole = db.get('memberRole')
 
                     db.set('memberRole', message.mentions.roles.first())

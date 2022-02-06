@@ -5,6 +5,28 @@ const {client} = require('../client')
 module.exports = {
     name: 'messageCreate',
     execute(message){
+        if(message.channel.id == db.get('verifyChannel').id){
+
+            // if(message.author.bot || message.member.roles.cache.has(db.get('staffRole').id)) return;
+            const cnt = message.content.trim().split(' ');
+            const memberRole = message.guild.roles.cache.get(db.get('memberRole').id);
+
+            function checkAge(cnt){
+                for(item of cnt){
+                    if(!isNaN(item)){
+                        if(item > 12 && item < 20) return true
+                    }  
+                }
+            }
+
+            if(checkAge(cnt) && message.content.toLowerCase().match('mushroom')){
+                message.member.roles.add(memberRole);
+                return message.delete()
+            }else{
+                return message.delete()
+            }
+        }
+
         const args = message.content.slice(pfx.length).trim().split(' ');
 
         if(message.content.toLowerCase().match('grrr') && !message.author.bot) message.reply('Hey tiger! grrr~')

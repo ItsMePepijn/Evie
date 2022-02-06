@@ -27,6 +27,7 @@ module.exports = {
             }
         }
 
+
         const args = message.content.slice(pfx.length).trim().split(' ');
 
         if(message.content.toLowerCase().match('grrr') && !message.author.bot) message.reply('Hey tiger! grrr~')

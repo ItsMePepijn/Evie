@@ -21,6 +21,7 @@ module.exports = {
 
             if(checkAge(cnt) && message.content.toLowerCase().match(db.get('codeword'))){
                 message.member.roles.add(memberRole);
+                console.log(`${message.member.user.tag} has veen verified!`)
                 return message.delete()
             }else{
                 return message.delete()

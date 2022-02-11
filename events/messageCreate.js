@@ -38,6 +38,6 @@ module.exports = {
         const command = args.shift().toLowerCase();
     
         const file = client.commands.get(command);
-        if(file) file.execute(message, args, client);
+        if(file) file.execute(message, args)
     }
 }

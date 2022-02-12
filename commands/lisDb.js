@@ -33,7 +33,7 @@ module.exports = {
                     delete data.guild;
                     const textData = JSON.stringify(data);
 
-                    embed.addField(item.ID, `\`\`\`json\n${textData}\`\`\``)
+                    embed.addField(item.ID + '(cut down)', `\`\`\`json\n${textData}\`\`\``)
                 }
                 else if(data.type == 'GUILD_TEXT'){
                     delete data.permissionOverwrites;
@@ -44,7 +44,7 @@ module.exports = {
                     delete data.lastMessageId;
                     const textData = JSON.stringify(data);
 
-                    embed.addField(item.ID, `\`\`\`json\n${textData}\`\`\``)
+                    embed.addField(item.ID + '(cut down)', `\`\`\`json\n${textData}\`\`\``)
                 }else{
                     embed.addField(item.ID, `\`${data}\``)
                 }

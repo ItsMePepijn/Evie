@@ -1,7 +1,7 @@
 const Discord = require('discord.js'); 
 const db = require('quick.db');
 const os = require('os');
-const ms = require(ms)
+const ms = require('ms')
 
 module.exports = {
     name:'hosting',

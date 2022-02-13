@@ -14,10 +14,10 @@ module.exports = {
         .addField('CPU', os.cpus()[0].model)
         .addField('Memory', `${Math.round(os.freemem/1000000)} / ${Math.round(os.totalmem/1000000)}`)
         .addField('Host name', os.hostname())
-        .addfield('Load average', `1m: ${os.loadavg()[0]}\n5m: ${os.loadavg()[1]}\n15m: ${os.loadavg()[2]}`)
-        .addfield('Platform', os.platform())
+        .addField('Load average', `1m: ${os.loadavg()[0]}\n5m: ${os.loadavg()[1]}\n15m: ${os.loadavg()[2]}`)
+        .addField('Platform', os.platform())
         .addField('Version', os.release())
-        .addfield('Uptime', `${os.uptime()}`)
+        .addField('Uptime', `${os.uptime()}`)
 
         message.channel.send({embeds: [embed]})
     }

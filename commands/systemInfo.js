@@ -16,7 +16,7 @@ module.exports = {
         .addField('Memory', `${Math.round(os.freemem/1000000)} / ${Math.round(os.totalmem/1000000)}`, true)
         .addField('Platform', `${os.platform()} ${os.release()}`, true)
         .addField('Load average', `1m: ${os.loadavg()[0]}\n5m: ${os.loadavg()[1]}\n15m: ${os.loadavg()[2]}`, true)
-        .addField('Uptime', `${ms(os.uptime()*1000), {long: true}}`, true)
+        .addField('Uptime', `${ms(os.uptime()*1000, {long: true})}`, true)
 
         message.channel.send({embeds: [embed]})
     }

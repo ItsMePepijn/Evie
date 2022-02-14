@@ -42,6 +42,19 @@ module.exports = {
                         embed.setTitle('Set the main channel!')
                         embed.setDescription(`> **Old channel:** <#${oldMainCannel.id}>\n> **New channel:** <#${newMainChannel.id}>`)
                     }
+                    else if(args[0] == 'logs'){
+                        if(agrs[1] == 'verify'){
+                            delete channel.guild;
+
+                            const oldVerifyLogsChannel = db.get('verifyLogs')
+
+                            db.set('verifyLogs', channel)
+                            const newVerifyLogsChannel = db.get('verifyLogs')
+
+                            embed.setTitle('Set the verify logs!')
+                            embed.setDescription(`> **Old channel:** <#${oldVerifyLogsChannel.id}>\n> **New channel:** <#${newVerifyLogsChannel.id}>`)
+                        }
+                    }
                 }
             }
         }

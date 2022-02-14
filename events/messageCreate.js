@@ -28,12 +28,14 @@ module.exports = {
                     }
                 }
 
-                if(checkAge(cnt).check && message.content.toLowerCase().match(db.get('codeword'))){
+                const user = checkAge(cnt)
+
+                if(user.check && message.content.toLowerCase().match(db.get('codeword'))){
                     message.member.roles.add(memberRole);
                     console.log(`${message.member.user.tag} has veen verified!`)
 
                     embed.setTitle('Verified new user!')
-                    embed.setDescription(`**User:** ${message.member.user.tag}\n**Age:** `)
+                    embed.setDescription(`**User:** ${message.member.user.tag}\n**Age:** ${user.age}`)
                     verifyLogs.send({embeds: [embed]})
                     return message.delete()
                 }else{

@@ -43,7 +43,7 @@ module.exports = {
                         embed.setDescription(`> **Old channel:** <#${oldMainCannel.id}>\n> **New channel:** <#${newMainChannel.id}>`)
                     }
                     else if(args[0] == 'logs'){
-                        if(agrs[1] == 'verify'){
+                        if(args[1] == 'verify'){
                             delete channel.guild;
 
                             const oldVerifyLogsChannel = db.get('verifyLogs')

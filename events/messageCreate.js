@@ -1,5 +1,6 @@
 const db = require('quick.db');
 const pfx = db.get('prefix');
+const Discord = require('discord.js')
 const {client} = require('../client')
 
 module.exports = {
@@ -11,18 +12,29 @@ module.exports = {
                 if(message.author.bot || message.member.roles.cache.has(db.get('staffRole').id)) return;
                 const cnt = message.content.trim().split(' ');
                 const memberRole = message.guild.roles.cache.get(db.get('memberRole').id);
+                const verifyLogs = message.guild.channels.cache.get(db.get('verifyLogs'.id))
+                const embed = new Discord.MessageEmbed()
+                .setColor(db.get('embedColor'))
+                .setTimestamp()
 
                 function checkAge(cnt){
                     for(item of cnt){
                         if(!isNaN(item)){
-                            if(item > 12 && item < 20) return true
+                            if(item > 12 && item < 20) return {
+                                check: true,
+                                age: item
+                            }
                         }  
                     }
                 }
 
-                if(checkAge(cnt) && message.content.toLowerCase().match(db.get('codeword'))){
+                if(checkAge(cnt).check && message.content.toLowerCase().match(db.get('codeword'))){
                     message.member.roles.add(memberRole);
                     console.log(`${message.member.user.tag} has veen verified!`)
+
+                    embed.setTitle('Verified new user!')
+                    embed.setDescription(`**User:** ${message.member.user.tag}\n**Age:** `)
+                    verifyLogs.send({embeds: [embed]})
                     return message.delete()
                 }else{
                     return message.delete()

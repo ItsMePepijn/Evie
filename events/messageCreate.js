@@ -35,7 +35,7 @@ module.exports = {
                     console.log(`${message.member.user.tag} has veen verified!`)
 
                     embed.setTitle('Verified new user!')
-                    embed.setDescription(`**User:** ${message.member.user.tag}\n**Age:** ${user.age}`)
+                    embed.setDescription(`**User:** ${message.member.user.id}\n**Age:** ${user.age}`)
                     verifyLogs.send({embeds: [embed]})
                     return message.delete()
                 }else{

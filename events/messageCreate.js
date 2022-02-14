@@ -12,7 +12,7 @@ module.exports = {
                 if(message.author.bot || message.member.roles.cache.has(db.get('staffRole').id)) return;
                 const cnt = message.content.trim().split(' ');
                 const memberRole = message.guild.roles.cache.get(db.get('memberRole').id);
-                const verifyLogs = message.guild.channels.cache.get(db.get('verifyLogs'.id))
+                const verifyLogs = message.guild.channels.cache.get(db.get('verifyLogs').id)
                 const embed = new Discord.MessageEmbed()
                 .setColor(db.get('embedColor'))
                 .setTimestamp()

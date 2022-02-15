@@ -52,6 +52,6 @@ module.exports = {
         const command = args.shift().toLowerCase();
     
         const file = client.commands.get(command);
-        if(file) file.execute(message, args)
+        if(file && !file.isDisabled) file.execute(message, args)
     }
 }

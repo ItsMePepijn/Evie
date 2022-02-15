@@ -44,6 +44,7 @@ module.exports = {
             }
         }
 
+        if(message.mentions.members.first() && message.mentions.members.first().id == '937661010402242641') message.reply(`Hey ${message.member}**!**`)
         const args = message.content.slice(pfx.length).trim().split(' ');
 
         if(message.content.toLowerCase().match('grrr') && !message.author.bot) message.reply('Hey tiger! grrr~')

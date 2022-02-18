@@ -25,6 +25,10 @@ module.exports = {
                     else console.log(chalk.green('[COMMAND HANDLER]') + ` - ${file} has been reloaded`);
 
                     client.commands.set(command.name, command);
+
+                    embed.setTitle('Reloaded commands!')
+                    embed.setDescription('All commands have been reloaded!')
+                    message.channel.send({embeds: [embed]})
                 }
             }
             else{

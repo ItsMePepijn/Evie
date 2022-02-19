@@ -47,6 +47,9 @@ module.exports = {
                     embed.setDescription(`You payed ${payee.user.username} ${amount} mushrooms!\nYour new balance is: ${payerBalance}`)
                 }
                 else{
+                    if(Number.isInteger(payerBalance)) var payerBalance = numeral(payerBalance).format('0,0')
+                    else var payerBalance = numeral(payerBalance).format('0,0.00')
+                    
                     embed.setTitle(`Error!`)
                     embed.setDescription(`You dont have sufficient funds!\nYour balance: ${payerBalance}`)
                 }

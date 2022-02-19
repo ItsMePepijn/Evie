@@ -17,7 +17,7 @@ module.exports = {
         if(message.mentions.members.first() && message.mentions.members.first().id != message.member.id){
             const payee = message.mentions.members.first()
             if(!isNaN(args[1])){
-                var amount = parseInt(args[1])
+                var amount = parseFloat(args[1])
 
                 var payerBalance = economy.get(`user_${message.member.id}.balance`)
                 if(payerBalance === null) {

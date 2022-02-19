@@ -21,7 +21,7 @@ module.exports = {
             if(Number.isInteger(balance)) var balance = numeral(balance).format('0,0')
             else var balance = numeral(balance).format('0,0.00')
 
-            embed.setTitle(`${message.mentions.members.first().nickname}\'s balance:`)
+            embed.setTitle(`${message.mentions.members.first().user.username}\'s balance:`)
             embed.setDescription(`${balance} mushrooms`)
         }
         else{

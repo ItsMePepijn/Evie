@@ -7,7 +7,6 @@ var economy = new db.table('economy')
 module.exports = {
     name: 'pay',
     description: 'pay someone money!',
-    isStaff: true,
     execute(message, args){
 
         const embed = new Discord.MessageEmbed();
@@ -49,7 +48,7 @@ module.exports = {
                 else{
                     if(Number.isInteger(payerBalance)) var payerBalance = numeral(payerBalance).format('0,0')
                     else var payerBalance = numeral(payerBalance).format('0,0.00')
-                    
+
                     embed.setTitle(`Error!`)
                     embed.setDescription(`You dont have sufficient funds!\nYour balance: ${payerBalance}`)
                 }

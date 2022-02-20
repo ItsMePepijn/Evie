@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const numeral = require('numeral')
 const db = require('quick.db');
 var economy = new db.table('economy');
+const {checkBalance} = require('../balance')
 
 module.exports = {
     name: 'setbalance',
@@ -17,10 +18,7 @@ module.exports = {
                 var target = message.mentions.members.first()
                 var amount = parseFloat(args[1])
 
-                var oldBalance = economy.get(`user_${target.id}.balance`)
-                if(oldBalance === null) {
-                    var oldBalance = 1000
-                }
+                var oldBalance = checkBalance(target.id)
 
                 economy.set(`user_${target.id}.balance`, amount)
                 var newBalance = economy.get(`user_${target.id}.balance`)

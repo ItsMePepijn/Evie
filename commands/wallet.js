@@ -12,7 +12,7 @@ module.exports = {
         embed.setColor(db.get('embedColor'))
 
         if(message.mentions.members.first()){
-            var balance = economy.get(`user_${message.mentions.first().id}.balance`)
+            var balance = economy.get(`user_${message.mentions.members.first().id}.balance`)
             if(balance === null) {
                 economy.set(`user_${message.mentions.members.first().id}.balance`, 1000)
                 var balance = 1000;

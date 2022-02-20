@@ -6,7 +6,7 @@ var economy = new db.table('economy');
 module.exports = {
     name: 'resetbalance',
     description: 'resets the balance of the mentioned user',
-    execute(message, args){
+    execute(message){
 
         const embed = new Discord.MessageEmbed();
         embed.setTimestamp()

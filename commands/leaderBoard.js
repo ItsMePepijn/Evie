@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 const numeral = require('numeral')
 const db = require('quick.db');
 var economy = new db.table('economy')
-const {client} = require('../client')
-const {updateBalance} = require('../balance')
 
 module.exports = {
     name: 'leaderboard',

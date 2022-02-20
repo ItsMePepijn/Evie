@@ -2,7 +2,6 @@ const db = require('quick.db');
 const pfx = db.get('prefix');
 const Discord = require('discord.js')
 const {client} = require('../client')
-const {updateBalance} = require('../balance')
 var economy = new db.table('economy')
 
 module.exports = {
@@ -48,7 +47,10 @@ module.exports = {
         if(message.author.bot || !message.guild) return;
 
         if(Math.floor(Math.random() * 6) == 1){
-            updateBalance(message.member.id)
+            var balance = economy.get(`user_${message.member.id}.balance`)
+            if(balance === null) {
+                economy.set(`user_${message.member.id}.balance`, 1000)
+            }
             economy.add(`user_${message.member.id}.balance`, Math.floor(Math.random() * 16))
         }
 

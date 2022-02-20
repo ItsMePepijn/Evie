@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const numeral = require('numeral')
 const db = require('quick.db');
-var economy = new db.table('economy')
+var economy = new db.table
 
 module.exports = {
     name: 'wallet',
@@ -12,9 +12,9 @@ module.exports = {
         embed.setColor(db.get('embedColor'))
 
         if(message.mentions.members.first()){
-            var balance = economy.get(`user_${message.mentions.members.first().id}.balance`)
+            var balance = economy.get(`user_${message.mentions.first().id}.balance`)
             if(balance === null) {
-                economy.set(`user_${message.mentions.members.first().id}.balance`, 1000)
+                economy.set(`user_${message.mentions.first().id}.balance`, 1000)
                 var balance = 1000;
             }
 

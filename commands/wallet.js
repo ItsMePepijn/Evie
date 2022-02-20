@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const numeral = require('numeral')
 const db = require('quick.db');
-var economy = new db.table
+var economy = new db.table('economy')
 
 module.exports = {
     name: 'wallet',

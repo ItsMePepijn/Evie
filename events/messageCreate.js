@@ -2,6 +2,8 @@ const db = require('quick.db');
 const pfx = db.get('prefix');
 const Discord = require('discord.js')
 const {client} = require('../client')
+const {updateBalance} = require('../balance')
+var economy = new db.table('economy')
 
 module.exports = {
     name: 'messageCreate',
@@ -43,13 +45,19 @@ module.exports = {
                 }
             }
         }
+        if(message.author.bot || !message.guild) return;
+
+        if(Math.floor(Math.random() * 6) == 1){
+            updateBalance(message.member.id)
+            economy.add(`user_${message.member.id}.balance`, Math.floor(Math.random() * 16))
+        }
 
         if(message.mentions.members.first() && message.mentions.members.first().id == '937661010402242641') message.reply(`Hey ${message.member}**!**`)
         const args = message.content.slice(pfx.length).trim().split(' ');
 
         if(message.content.toLowerCase().match('grrr') && !message.author.bot) message.reply('Hey tiger! grrr~')
 
-        if (!message.content.startsWith(pfx) || message.author.bot || !message.guild) return;
+        if (!message.content.startsWith(pfx)) return;
         const command = args.shift().toLowerCase();
     
         const file = client.commands.get(command);

@@ -18,7 +18,11 @@ module.exports = {
                 var target = message.mentions.members.first()
                 var amount = parseFloat(args[1])
 
-                var oldBalance = checkBalance(target.id)
+                var oldBalance = economy.get(`user_${target.id}.balance`)
+                if(oldBalance === null) {
+                    economy.set(`user_${target.id}.balance`, 1000)
+                    var oldBalance = 1000;
+                }
 
                 economy.add(`user_${target.id}.balance`, amount)
                 var newBalance = economy.get(`user_${target.id}.balance`)

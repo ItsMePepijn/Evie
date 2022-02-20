@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const numeral = require('numeral')
 const db = require('quick.db');
-const {checkBalance} = require('../balance')
+var economy = new db.table('economy')
 
 module.exports = {
     name: 'wallet',
@@ -12,7 +12,11 @@ module.exports = {
         embed.setColor(db.get('embedColor'))
 
         if(message.mentions.members.first()){
-            var balance = checkBalance(message.mentions.members.first().id)
+            var balance = economy.get(`user_${message.mentions.members.first().id}.balance`)
+            if(balance === null) {
+                economy.set(`user_${message.mentions.members.first().id}.balance`, 1000)
+                var balance = 1000;
+            }
 
             if(Number.isInteger(balance)) var balance = numeral(balance).format('0,0')
             else var balance = numeral(balance).format('0,0.00')
@@ -21,7 +25,11 @@ module.exports = {
             embed.setDescription(`${balance} mushrooms`)
         }
         else{
-            var balance = checkBalance(message.member.id)
+            var balance = economy.get(`user_${message.member.id}.balance`)
+            if(balance === null) {
+                economy.set(`user_${message.member.id}.balance`, 1000)
+                var balance = 1000;
+            }
 
             if(Number.isInteger(balance)) var balance = numeral(balance).format('0,0')
             else var balance = numeral(balance).format('0,0.00')

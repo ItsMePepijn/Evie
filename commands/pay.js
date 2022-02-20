@@ -3,7 +3,6 @@ const numeral = require('numeral');
 const db = require('quick.db');
 const pfx = db.get('prefix');
 var economy = new db.table('economy')
-const {checkBalance, updateBalance} = require('../balance')
 
 module.exports = {
     name: 'pay',
@@ -19,15 +18,23 @@ module.exports = {
             if(!isNaN(args[1])){
                 var amount = parseFloat(args[1])
 
-                var payerBalance = checkBalance(message.member.id)
+                var payerBalance = economy.get(`user_${message.member.id}.balance`)
+                if(payerBalance === null) {
+                    economy.set(`user_${message.member.id}.balance`, 1000)
+                    var payerBalance = 1000;
+                }
 
                 if(payerBalance >= amount){
-                    updateBalance(payee.id)
+                    var payeeBalance = economy.get(`user_${payee.id}.balance`)
+                    if(payeeBalance === null) {
+                        economy.set(`user_${payee.id}.balance`, 1000)
+                    }
 
                     economy.add(`user_${payee.id}.balance`, amount)
                     economy.subtract(`user_${message.member.id}.balance`, amount)
 
                     var payerBalance = economy.get(`user_${message.member.id}.balance`)
+                    var payeeBalance = economy.get(`user_${payee.id}.balance`)
 
                     if(Number.isInteger(payerBalance)) var payerBalance = numeral(payerBalance).format('0,0')
                     else var payerBalance = numeral(payerBalance).format('0,0.00')

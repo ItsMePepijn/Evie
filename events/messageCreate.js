@@ -1,8 +1,8 @@
 const db = require('quick.db');
 const pfx = db.get('prefix');
-const {client} = require('../client')
+const {client} = require('../modules/client')
 var economy = new db.table('economy')
-const {verifiedCheck} = require('../verifySystem')
+const {verifiedCheck} = require('../modules/verifySystem')
 
 module.exports = {
     name: 'messageCreate',

@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const Discord = require('discord.js');
 
 //Client setup
-const {client} = require('./client')
+const {client} = require('./modules/client')
 client.commands = new Discord.Collection();
 
 //Commands setup

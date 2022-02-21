@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Discord = require('discord.js')
 const db = require('quick.db')
-const {client} = require('../client')
+const {client} = require('../modules/client')
 const chalk = require('chalk')
 
 module.exports = {
